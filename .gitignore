@@ -1,6 +1,6 @@
 *~
 #*#
 *.hi
-a.out
+*a.out
 *.pyc
 *.elc
