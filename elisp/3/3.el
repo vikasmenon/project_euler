@@ -27,7 +27,7 @@
 (defun range( start end )
   (loop for i from start below end collect i))
 
-(euler3 600851475143)
+;;(euler3 600851475143)
 
 (euler3 165)
 
