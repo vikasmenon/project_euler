@@ -10,17 +10,17 @@ _erastothenesSieve [] z = z
 _erastothenesSieve (y:ys) z   = _erastothenesSieve [ x | x <- ys, (rem x y) /=0 ] (y:z)
 --_erastothenesSieve (y:ys) z   = _erastothenesSieve (filter (\x -> (rem x y) /= 0 ) ys) (y:z)
 
-primeFactors :: (Integral a) => a -> [a]
-primeFactors x = filter (\ z -> (rem x z) == 0 ) (erastothenesSieve  (div x 2 ) )
+primeFactors x = primeFactors' x 0
+primeFactors' 0 _ = []
+primeFactors' x i
+	| (current*current > x) = [x]
+	| x `divBy` current = current:primeFactors' (x `div` current) 0
+	| otherwise = primeFactors' x (i+1)
+		where
+			current = primes!!i
 
 --euler3Test :: [Integer]
 --euler3Test = primeFactors 14
-
-_primeFactors x y = _primeFactors (div x newFound) newFound:y
-                    where newFound = last ( takeWhile (rem x y == 0) primes )
-
-primeFactors x = _primeFactors x []
-
 
 ---------- Copied from rosettacode.org: http://rosettacode.org/wiki/Sieve_of_Eratosthenes#Haskell
 
