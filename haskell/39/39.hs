@@ -1,5 +1,10 @@
-perimeter x = length [(a,b,c) | a<- [1..x], b<-[1..a], c<-[1..b], a+b+c==x, b^2+c^2==a^2]
+import Data.List
 
-soln = maximum [ (perimeter x, x) | x<-[1..1000]]
+pytriples num = [(i,j,k) | i <-[1..num], j <- [i..num], k <-[j..num], i+j+k <= 1000, i^2 + j^2==k^2]
 
-fx = 10
+solve num = maximum [ (length xs, xs!!0) | xs <- group $ sort $ trisummer $ pytriples num]  
+
+trisummer [] = []
+trisummer ((x,y,z):xs) = x+y+z: trisummer xs
+
+solve39 = snd $ solve 1000
