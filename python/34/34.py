@@ -5,3 +5,5 @@ nums = [n for n in strNums if f(n) == int(n)]
 print 145 + 40585
 
 
+
+
